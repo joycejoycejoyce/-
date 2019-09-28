@@ -1,0 +1,24 @@
+{
+  "name": "joycejoycejoyce.github.io",
+  "version": "1.0.0",
+  "description": "You can use the [editor on GitHub](https://github.com/joycejoycejoyce/-/edit/master/README.md) to maintain and preview the content for your website in Markdown files.",
+  "main": "index.js",
+  "dependencies": {
+    "scss-compile": "^0.1.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss-compile": "node-sass ./assets/sass/main.scss ./assets/css/main.css -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joycejoycejoyce/joycejoycejoyce.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joycejoycejoyce/joycejoycejoyce.github.io/issues"
+  },
+  "homepage": "https://github.com/joycejoycejoyce/joycejoycejoyce.github.io#readme"
+}
