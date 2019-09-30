@@ -1,5 +1,8 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,900");
+.highlightTitle {
+  background: #da83ae; }
+
 /*
 	Twenty by HTML5 UP
 	html5up.net | @ajlkn

@@ -76,35 +76,53 @@
 									<section>
 										<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
 										<header>
-											<h3>真实世界的困境</h3>
+											<h3>主题</h3>
 										</header>
-										<p>Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum massa. Morbi eu faucibus massa. Aliquam massa urna, imperdiet sit amet mi non, bibendum euismod est. Curabitur mi justo, tincidunt vel eros ullamcorper, porta cursus justo. Cras vel neque eros. Vestibulum diam.</p>
-										<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique. Sed id sem et massa ornare pellentesque. Maecenas pharetra porta accumsan. </p>
-										<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus, non hendrerit ipsum arcu tristique est.</p>
+										<a href="#color">Sass Color 的处理</a>
 									</section>
 								</div>
 
 						</section>
 					<!-- Two -->
-						<section class="wrapper style4 container">
+						<section class="wrapper style4 container" id="color">
 							<!-- Content -->
 								<div class="content">
 									<section>
 										<header>
-											<h3>抽象概念的出现－－SASS</h3>
+											<h3>Sass Color 的处理</h3>
 										</header>
 										<p>
-											Steps:
-                                            <ol>
-                                               <li> 安装npm </li> 
-                                               <li> 配置json文件 </li> 
-                                               <li>下载sass包</li> 
-                                            </ol>
-                                           
+											<h4>技术与工具</h4>
+											<ul>
+												<li>map-get($palette, $color);<br/>
+													 这是Sass 自带的function. 我们可以用这个方式去access $palette hashmap 
+													 之中的颜色。
+													 在Sass 里， hex颜色都直接在template 上写出，不需要用 “”， 但事实上Sass是
+													 将这些颜色都作为string 输出的。
+												</li>
+												<li>自定义 function<br/>
+													格式： <br/>
+													@function [name] ([param]){
+														@return;
+													}
+												</li>
+												<li>@warn 关键字<br/>
+													@warn 关键字在function 中使用。我们可以把它当作js 中的console.log 使用。
+													@warn 会在console中输出提示信息，并且不会中断function的运行。
+												</li>
+											</ul>
+										
+
+										</p>
+										<p>
+											<p class="codepen" data-height="300" data-theme-id="37857" data-default-tab="css,result" data-user="joycho123" data-slug-hash="pozmGJq" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="palette">
+												<span>See the Pen <a href="https://codepen.io/joycho123/pen/pozmGJq">
+													palette</a> by Joy (<a href="https://codepen.io/joycho123">@joycho123</a>)
+													on <a href="https://codepen.io">CodePen</a>.</span>
+											</p>
+											<script async src="https://static.codepen.io/assets/embed/ei.js"></script> 
                                         </p>
-										<p>Vestibulum diam quam, mollis at consectetur non, malesuada quis augue. Morbi tincidunt pretium interdum. Morbi mattis elementum orci, nec dictum porta cursus justo. Quisque ultricies lorem in ligula condimentum, et egestas turpis sagittis. Cras ac nunc urna. Nullam eget lobortis purus. Phasellus vitae tortor non est placerat tristique. Sed id sem et massa ornare pellentesque. Maecenas pharetra porta accumsan. </p>
-										<p>In vestibulum massa quis arcu lobortis tempus. Nam pretium arcu in odio vulputate luctus. Suspendisse euismod lorem eget lacinia fringilla. Sed sed felis justo. Nunc sodales elit in laoreet aliquam. Nam gravida, nisl sit amet iaculis porttitor, risus nisi rutrum metus, non hendrerit ipsum arcu tristique est.</p>
-									</section>
+										</section>
 								</div>
 
 						</section>
