@@ -93,9 +93,49 @@
                                     <header>
                                         <h3>想看的内容都在这里啦</h3>
                                     </header>
+                                    <a href="#form">对于form的css修饰</a><br/>    
                                     <a href="#sameWidth">想让多个元素在同一行</a><br/>    
                                     <a href="#cssAttributeSelector">css attribute 选择器</a><br/>    
                                     <a href="#hideElement">透明</a>    
+                                </section>
+                            </div>
+                    </section>
+                <!-- content -->
+                    <section class="wrapper style4 container" id="form">
+                        <!-- Content -->
+                            <div class="content">
+                                <section>
+                                    <header>
+                                        <h3 class="">一起聊聊<strong>form label</strong>吧</h3>
+                                    </header>
+                                    <p>
+                                        <h4>大家遇到的问题</h4>
+                                        其实tbh form 还是挺难的。因为browser 对form 本身的css style 就已经有很多了。
+                                        比如说input 元素 focus 的时候有outline 光圈。所以我们要去做出自己的样式时还要先
+                                        把browser本身的样式了解了，然后拆掉。
+                                        <ul>
+                                            <li>radio input 不可以被style<br>
+                                                所以如果我们想做出自己的样式的radio input, 就要去重写。不过这也不是什么
+                                                大问题了。因为现在大部分css都没有自己从头手写的了,except for practice 
+                                                purpose. 
+                                            </li>
+                                        </ul>
+                                    </p>
+                                    <p> 
+                                        <h4>概念<strong></strong></h4>
+                                    </p>
+                                    <p> 
+                                        <h4>破除诅咒的<strong>方法</strong>以及方法比较</h4>
+                                        radio input 的破解
+                                        <ul>
+                                            <li>很简单啊，用framework啊！<br/>
+                                            这个方法应该是最常用也最intuitive的了。而且没什么坏处。
+                                            </li>
+                                            <li>把input 元素用display:none 藏起来，然后style 一个 span 元素作为radio input<br/>
+                                                我就不细说了。因为我觉得真的写代码的时候99%都不需要这样自己写吧。了解一下就好了。
+                                            </li>
+                                        </ul>
+                                    </p>
                                 </section>
                             </div>
                     </section>
