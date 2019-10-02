@@ -88,3 +88,6 @@
 @function _size($keys...) {
 	@return val($size, $keys...);
 }
+
+
+// Get tone from palette.

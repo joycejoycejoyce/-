@@ -3,6 +3,14 @@
 .highlightTitle {
   background: #da83ae; }
 
+.diagram__component {
+  background-color: #83d3c9;
+  border-radius: 4px;
+  height: 2.4rem;
+  display: inline-block;
+  padding: .5rem;
+  margin: 0px auto; }
+
 /*
 	Twenty by HTML5 UP
 	html5up.net | @ajlkn
