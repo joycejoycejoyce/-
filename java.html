@@ -1,0 +1,166 @@
+<!DOCTYPE HTML>
+<html>
+		<head>
+				<title>No Sidebar - Twenty by HTML5 UP</title>
+				<meta charset="utf-8" />
+				<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+				<link rel="stylesheet" href="assets/css/main.css" />
+				<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+			</head>
+	<body class="no-sidebar is-preload">
+		<div id="page-wrapper">
+			<!-- Header -->
+			<header id="header" class="alt">
+					<h1 id="logo"><a href="index.html">Joyce Zhou
+						<span>My Coding Journal</span></a>
+					</h1>
+					<nav id="nav">
+						<ul>
+							<li class="current"><a href="index.html">Welcome</a></li>
+							<li class="submenu"><a href="#">分类</a>
+								<ul>
+									<li><a href="left-sidebar.html">html</a></li>
+									<!-- css -->
+									<li class="submenu">
+											<a href="#">css</a>
+											<ul>
+												<li><a href="css.html">css</a></li>
+												<li><a href="preprocessor.html">preprocessor</a></li>
+												<li><a href="#">framework</a></li>
+											</ul>
+										</li>
+									<li><a href="js.html">js</a></li>
+									<li><a href="dom.html">dom</a></li>
+									<li><a href="config.html">config</a></li>
+									<li>
+										<a href="#">architecture</a>
+										<ul>
+											<li><a href="#">project architecture</a></li>
+											<li><a href="design-pattern.html">design pattern</a></li>
+										</ul>
+									</li>
+									<li><a href="java.html">java</a></li>
+									<!-- 
+									<li class="submenu">
+										<a href="#">Submenu</a>
+										<ul>
+											<li><a href="#">Dolore Sed</a></li>
+											<li><a href="#">Consequat</a></li>
+											<li><a href="#">Lorem Magna</a></li>
+											<li><a href="#">Sed Magna</a></li>
+											<li><a href="#">Ipsum Nisl</a></li>
+										</ul>
+									</li>
+									-->
+								</ul>
+							</li>
+							<li><a href="#" class="button primary">Sign Up</a></li>
+						</ul>
+					</nav>
+				</header>
+			<!-- Main -->
+				<article id="main">
+					<header class="special container">
+						<span class="icon solid fa-sun"></span>
+						<h2>Java<strong>基本知识</strong></h2>	 
+					</header>
+					<!-- table of content -->
+						<section class="wrapper style4 container">
+							<!-- Content -->
+								<div class="content">
+									<section>
+										<header>
+											<h3>章节看这里</h3>
+										</header>
+										<ul>
+											<li><a href="#ioFlow">IO流</a></li>
+										</ul>
+									</section>
+								</div>
+						</section>
+					<!-- content -->
+						<section class="wrapper style4 container" id="ioFlow">
+							<!-- Content -->
+								<div class="content">
+										<header>
+											<h3>IO 流</h3>
+										</header>
+										<p>IO流主管的是数据的读取与写入。比如说我们常用的文件下载，就是一个数据读取。Java通过在后台
+											从hard disk中读取写入data来处理data的改变。InputStream 就是从hard disk 中读取数据。
+											OutputStream 就是把数据从memory中写到 hard disk 上。
+										</p>
+									<section>
+										<h4>OutputStream</h4>
+										<p>OutputStream 是一个abstract class. 它自身并不能创建instance. 但是它的子类 FileOutputStream
+											可以。我会重点谈FileOutputStream.
+											<br/>
+											<h5>syntax</h5>
+											<iframe height="400px" width="100%" src="https://repl.it/repls/LiveTragicCopycat?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+											在建立新的instance 时，有三件事情发生了。
+											<ol>
+												<li>建立了fileOutputStream instance</li>
+												<li>指定了文件所在的路径，如果路径下没有相应名字的file,Java会自动创建一个</li>
+												<li>将instance －> file</li>
+											</ol>
+											<h5>FileOutputSteam 写入的三种方式</h5>
+											这里java 用了多态的概念出了三个name相同但是param 不同的三个method 
+											<ul>
+												<li>write(int i)</li>
+												<li>write(byte[])</li>
+												<li>write(byte[], startIndex, length)</li>
+											</ul>
+											<h5>写入文件时的两个小问题</h5>
+											<ul>
+												<li>如何换行<br/>
+													用“\n”来表示换行。不过有一点要注意的是在不同的操作系统下，对于"\n"的解析是不一样的
+													<table>
+														<tr><th>OS</th><th>parse</th></tr>
+														<tbody>
+															<tr><td>Linux</td><td>"\n"</td></tr>
+															<tr><td>Windows</td><td>"\r\n"</td></tr>
+															<tr><td>MacOS</td><td>"\r"</td></tr>
+														</tbody>
+													</table>
+												</li>
+												<li>如何续写文件<br>
+													在创建instance 时加上第二个param设为true. 第二个param 是在问programmer是否要接着续写file。
+													<iframe height="400px" width="100%" src="https://repl.it/repls/LiveTragicCopycat?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+												</li>
+											</ul>
+											<h5>IO流处理异常－－finally块</h5>
+											finally block 的作用为执行清除操作。在finally 块中常做的操作是释放资源。我们需要finally block 的原因是
+											它是一个只要JVM不退出就一定会执行的block。
+											<h5>InputStream 读数据</h5>
+											FileInputStream instance 可以从指定的文件里读取字节。下面的代码是标准读取文件的写法。
+											<iframe height="400px" width="100%" src="https://repl.it/repls/LiveTragicCopycat?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
+											<h5>练习：将input.txt 中的text 复制到 output.txt</h5>
+										</p>
+									</section>
+								</div>
+						</section>
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon brands circle fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands circle fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands circle fa-google-plus-g"><span class="label">Google+</span></a></li>
+						<li><a href="#" class="icon brands circle fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon brands circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+		</div>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+	</body>
+</html>
