@@ -100,7 +100,50 @@
                                 </section>
                             </div>
                     </section>
-                <!-- content -->
+                    <!-- content -->
+                    <section class="wrapper style4 container" id="inline-block">
+                        <h3>Q: 浮动布局</h3>
+                        <p>
+                            
+                        </p>
+                        <h3>Q：如果想对一个带有特殊属性值的html标签进行css样式渲染，如何实现</h3>
+                        <p>概念：css属性选择器<br/>
+                            当我们想找一个相对应的属性时，可以直接用 .elementName[attr]{// css attributes }
+                            当我们想要找一个对应属性的匹配值时， 可以在括号中用＝。 .elementName[attr="value"]{// css attributes}
+                        </p>
+                        <h3>display: inline-block 实现行内的好看样式设计</h3>
+                        <h4>相关知识点以及技术</h4>
+                        <ul>
+                            <li> 行内元素 inline element <br/>
+                                常见的行内元素有比如说 a, span, em, img 等等。我其实不大喜欢叫他们标签。因为这样很容易忽略
+                                他们其实也有样式设计的事实。更加立体的想法是把他们想象成一个元素。怎么说呢，就是他们是其中带了
+                                内容的一个盒模型。而不是把html 与css 分开来想象。如果这样想的话，我们的思维就与browser更加接近了。<br/>
+                                对于一个行内元素来说，纵向上 vertically它的高度height是wrap-content的，并且padding和 margin 都为0.我们没有改变权限。
+                                从horzontal 来说它的 宽度也是wrap-content 的，我们没有改变的权限。
+                                <p class="codepen" data-height="300" data-theme-id="37857" data-default-tab="css,result" data-user="joycho123" data-slug-hash="rNNxQNm" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="rNNxQNm">
+                                        <span>See the Pen <a href="https://codepen.io/joycho123/pen/rNNxQNm">
+                                        rNNxQNm</a> by Joy (<a href="https://codepen.io/joycho123">@joycho123</a>)
+                                        on <a href="https://codepen.io">CodePen</a>.</span>
+                                      </p>
+                                      <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+                            </li>
+                        </ul>
+                        <h4>遇到的问题</h4>
+                        那么这个时候对于前端的样式设计工程师而言就很头疼了。因为inline 元素的这些限制，让有的设计变的不可实现。比如如果我希望将一段text拉高一些来
+                        吸引用户的注意力。为了美观我并不想使用html给定的 i 标签来实现这个效果。下面我举了两个例子来说明。
+                        <h4>案例</h4>
+                        <ul>
+                            <li>在Amazon kindle上能够实现highlight 书本中重要的内容进行标示。有用户抱怨说现在的效果真的不好看。他们说这个背景全部都贴着文字。
+                                那么pm 希望能够带给用户能好的体验提供更美观的界面。所以现在找到我们。说，希望显示的时候背景色的高度是与row height 相同的
+                                而不是与text height 相同的，怎么解决？
+                            </li>
+                            <li>我们blog页面是为influencer 打造的。而这些bloger 赚钱的方式就是在自己的blog 中提供third party product 的连接。因此对
+                                这些 a element 的设计尤其重要。我们希望它设计的十分美观且fancy。设计师提出的最好的效果是当用户hover 过这个 a tag 的时候，
+                                背景变为好看的灰黑色，文字放大，旋转并且后面有银白色的文字阴影。我们要如何实现？
+                            </li>
+                        </ul>
+                        <h4>概念：display:inline-block</h4>
+                    </section>
                     <section class="wrapper style4 container" id="form">
                         <!-- Content -->
                             <div class="content">
