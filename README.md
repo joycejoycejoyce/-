@@ -4,4 +4,4 @@
 
 
 # javascript 
-[JavaScript](./js.md )
+[JavaScript](./JavaScript.md )
