@@ -34,9 +34,11 @@ document.write("<br />");
 
 `
 上述代码的输出结果为（      ）
-false false false false false
-false true false false false
-false false true test Boolean
+false false false false false  
+
+false true false false false  
+
+false false true test Boolean  
 
 --- 
 
