@@ -43,5 +43,35 @@ false false true test Boolean
 
 --- 
 
+## 什么是默认行为
+概念： 
+默认行为就是比如一个当一个form的submit button被点击时它会自动的向后端发送数据
+但是其实我们不想要这个行为时，就牵扯出了另一个概念，默认行为阻止
+`e.preventDefault();`
+这个方法可以阻止默认行为的发生。
+IE永远有一个自己的逻辑。和其他浏览器不同，它用来阻止默认行为时使用的是 `e.returnValue = false`;
+
+其他的概念：
+### 讲讲冒泡以及如何阻止冒泡
+event bubbling 的概念我原来一直都理解的不是很到位。其实说白一点就是想想我们的layout, 是由一个个的元素的层层包裹完成的。
+每一个元素都有其hook 的functions. 当你点击一个`<li>`的时候其实你点击了`<table>`之中的元素，也是点击了`<table>`。 所以在`<li>` hook的function 完成之后，会接着触发`<table>`的function.这就是event bubbling。  
+如何阻止他呢？这也很简单。那就是使用`e.preventPropagation`的方法。propagation 在英文里是传播的意思，所以就是停止向外传播。跟bubble 差不多，感觉很形象呢。
+
+## 案例
+
+--- 
+如何阻止IE和各大浏览器默认行为（      ）
+window.event.cancelBubble = true;
+window.event.returnValue = false;
+event.stopPropagation();
+event.preventDefault();
+
+Answer: BD，其他两个是关于冒泡的
+考点： 对于冒泡事件和默认行为的区分，方法认识，以及对ie broswer 和其他浏览器进行区分
+--- 
+
+
+ 
+
 
 
