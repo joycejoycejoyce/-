@@ -57,7 +57,7 @@ event bubbling 的概念我原来一直都理解的不是很到位。其实说�
 每一个元素都有其hook 的functions. 当你点击一个`<li>`的时候其实你点击了`<table>`之中的元素，也是点击了`<table>`。 所以在`<li>` hook的function 完成之后，会接着触发`<table>`的function.这就是event bubbling。  
 如何阻止他呢？这也很简单。那就是使用`e.preventPropagation`的方法。propagation 在英文里是传播的意思，所以就是停止向外传播。跟bubble 差不多，感觉很形象呢。
 
-## 案例
+### 案例
 
 --- 
 如何阻止IE和各大浏览器默认行为（      ）
@@ -69,6 +69,24 @@ event.preventDefault();
 Answer: BD，其他两个是关于冒泡的
 考点： 对于冒泡事件和默认行为的区分，方法认识，以及对ie broswer 和其他浏览器进行区分
 --- 
+
+
+## 隐式的类型转化
+
+### 案例
+--- 
+
+以下哪些语句触发了隐式的类型转换？
+parseInt(12.34, 10)
+0 ? 1 : 2
+2e1 * 0xaa
+1 + '1'
+
+--- 
+B. 在B之中考察了三元运算符，会判断？之前的表达式为T/F。所以number 类型的0发生了隐式转换为boolean  
+这里就是0被compiler 解析成了false -> if statement === TRUE: if statement === FALSE
+
+ 
 
 
  
