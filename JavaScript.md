@@ -1,5 +1,24 @@
 # JavaScript 的练习题看这里
 
+## 跨域问题 jsonp
+### jsonp 的概念
+jsonp 是解决跨域问题的办法之一。原理在于虽然我们由于同源策略不能够从另外的domain上请求file，可是我们可以请求script.  
+JSONP 就是利用了这个特点，所以它并不使用XMLHTTPRequest 而是使用了 `<script>` 标签.  
+使用JSONP的原理是： 
+1. 利用script 标签的src 属性实现跨域
+2. 通过将前端方法作为参数传递到服务器端，然后由服务器端注入参数后再返回，实现服务器端向客户端通信
+3. 使用script标签的src属性，因此只支持get方法
+
+## Promise 
+Promise 算是面试题只重的重中之重了，不管是谁家的面试都问过关于Promise 的题目。
+## 概念
+Promise 是做异步的标准用法。它接受一个函数作为参数，并且返回promise 对象。为链式调用提供基础。  
+
+Promise 共有三种状态
+1. pending: 初始状态
+2. fulfilled: 意味着异步操作的结果为失败 
+3. rejected: 意味着异步操作的结果为失败
+
 ## JS 的6个假值
 概念：
 1. false 
@@ -61,12 +80,13 @@ event bubbling 的概念我原来一直都理解的不是很到位。其实说�
 
 --- 
 如何阻止IE和各大浏览器默认行为（      ）
-window.event.cancelBubble = true;
-window.event.returnValue = false;
-event.stopPropagation();
-event.preventDefault();
+1. window.event.cancelBubble = true;
+2. window.event.returnValue = false;
+3. event.stopPropagation();
+4. event.preventDefault();  
 
-Answer: BD，其他两个是关于冒泡的
+Answer: BD，其他两个是关于冒泡的  
+
 考点： 对于冒泡事件和默认行为的区分，方法认识，以及对ie broswer 和其他浏览器进行区分
 --- 
 
@@ -87,9 +107,33 @@ parseInt(12.34, 10)
 这里就是0被compiler 解析成了false -> if statement === TRUE: if statement === FALSE
 
  
+## parseFloat() function 
+parseFloat() function 是在Number class 下的function. 其作用为讲string -> float number  
+`var floatVal = Number.parseFloat("1.95")`然后在console 之中检测数据类型`console.log(typeof floatVal)`
+会得到结果`number`.
 
+
+## isNaN() function 
+
+
+## escape() 
+这个方法已经是破碎的方法了。在MDN 上已经被注释这不要使用了。
 
  
-
+## eval() function
+### 概念
+全局对象上的一个函数，会把传入的字符串当做js代码来执行。如果说传入的参数不是String，它会原封不动的将其返回。  
+但是在各种使用规范上，包括MDN都强烈的不推荐使用eval().原因是：
+1. 降低性能。
+2. 安全问题。它给被求值的string 赋予了太大的权力，大家担心可能因此导致XSS攻击
+3. 调试困难。
+### 牵涉的其他概念以及技术
+JSON 是一个轻量级的数据格式。JSON是JS的原生格式，这就意味着JS在处理JSON数据时不需要任何特殊的API或者是工具包，效率也
+很高。  
+Syntax: varjsonData = `'{"data1": "hello", "data2":"world"}'`;  
+调用方法： jsonData.data1, jsonData.data2;  
+json的解析方法  json的解析方法一般是两种，
+1. eval()
+2. JSON.parse()
 
 
