@@ -88,6 +88,8 @@ function stepStairs(s){
 
 5. optimizationn 想想改进方法
 前面的写法已经可以实现结果了。可是如果我们画图就会发现
+``` 
+
 stairs(1) => 1 way 
 stairs (2) => 2 ways 
 stairs (3) => stairs(2) = 2 ways 
@@ -107,6 +109,9 @@ stairs(5) => stairs(4) => stairs(3) => stairs(2)=2 ways
                        => stairs(1) = 1 way 
                         = 3 ways 
           = 8 ways  
+
+``` 
+
 
 在我们不断向上循环的过程中， 前面的function 在不断被重算。那么去加快calculation 的方法是否可以
 是将前面计算的结果记录下来呢？
