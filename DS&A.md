@@ -136,3 +136,20 @@ stairs(5) => stairs(4) => stairs(3) table(3) ? no => stairs(2)=2 ways
 
 ``` 
 那么这里面的stairs(3) 就可以直接取table中的value而不用重新计算了。
+
+code
+``` 
+var table = {
+    0: 0,
+    1:1,
+    2: 2,
+    3: 3,
+}
+function calcWays(s){
+    if (! table[s]){
+        table[s] = table[s-1] + table[s-2];
+    }
+    return table[s];
+}
+
+``` 
