@@ -84,7 +84,7 @@ Event Loop 是一个机制 mechanism. 它使得在单线程语言JS能够同时�
 3. Queue 就是当API处理结束，给我们返回了data后，我们就将callback function(data) 放入Queue 之中等待处理. 
 
 #### Process 
----
+``` 
 all sync code 被处理
     /|\
 async 被检测到 -----> 移到这里向第三方作处理 
@@ -102,7 +102,7 @@ stack             web APIs
 
     Queue
 async_callback_fun1(data)   async_callback_fun2(data)        
---- 
+```  
 
 我们可以在脑子里这样想
 1. 找出sync statement 
