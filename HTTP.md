@@ -9,7 +9,6 @@
 * 网络编程三要素
 1. IP address. 
  在这样的一个网络中我们如何找到对方. (ComputerA & ComputerB). 
- 
 2. Port 
 端口port 是对程序的唯一标识. 
 网络的通信，本质上是两个应用程序的通信。每台计算机上都有很多的应用
@@ -21,116 +20,56 @@
    如果端口号被另一个服务或者是应用所占用，会导致当前程序启动失败
 3. protocol. 通信的规则
 
-## IP address 
-### Intro  
-* IP address 相当于门牌号码，
-通过IP address 才能知道每一个主机的位置。server 也是一个主机，想要访问某一个server, 必须直到server的IP address.
-* IP address 分为两大类
-1. IPv4: 
-给每个链接在网络上的主机分配了一个32bit的地址。按照TCP／IP的规定，IP地址用二进制来表示，每个IP地址长32bit,也就是4个bytes.
-为了方便使用，IP地址经常被写成十进制的形式，中间用符号“.” 分隔不同的字节。
-2. IPv6
-现在对IP地址的需求量越来越大，但是网络资源地址有限，所以IP的分配变得越来越紧张。为了扩大地址空间，通过IPv6重新定义地址空间，采用128位地址长度，去解决网络地址资源数量不够的问题
 
-## Protocol 
-* UDP 协议  
- UDP协议是User Datagram Protocol 
- 它是无连接通信协议。即在数据传输时，数据的发送端和接收端不建立逻辑连接。
-  简单的说，当PC A  －> PC B 时， 发送端不会确认接收端是否存在，就会发出数据。同样接收端在收到数据时，
-  也不会向发送端反馈是否收到数据。
-  由于UDP协议消耗资源小，通信效率高，所以通常会被用于audio, video 和普通data 的传输.
-  比如视频会议通常采用UDP协议。因为即使丢失一两个数据包，也不会对接受结果产生太大的影响。但是使用UDP协议
-  传送数据时，由于UDP的面向无连接性，不能保证数据的完整性。因此传输重要数据时不建议使用UDP协议。 
-* TCP 协议
-  Transmission Control Protocol 
-  TCP协议是面向连接的通信协议。在传输数据之前，在发送端和接收端必须要建立起逻辑联系。然后才能传输数据。
-  它提供了两台计算机之间可靠无差错的数据传输。在TCP连接中必须要明确客户端和服务器端。由客户端向服务器端
-  发出连接请求。每次连接的建立都需要经过三次握手
-
-  * 三次握手
-   TCP协议中，在发送数据的准备阶段，客户端和服务器之间的三次交互。以保证连接的可靠。
-  第一次握手：客户端向服务端发送连接请求，等待服务器确认
-  第二次握手：服务器端想客户端送回一个响应，通知客户端收到了连接请求
-  第三次握手：客户端再次向服务端发送确认信息，确认连接
-
-  ` 
-   1) client -- req: "request connect" --> server 
-   2) client <--  res :"request received" -- server
-   3) client -- conf"confirmation"  --> server 
-  `
-
-   三次握手完成后，连接就建立了。客户端和服务端就可以开始进行数据传输了。对于这种面向连接的特性，TCP协议可以
-   保证传输数据的安全。所以应用十分广泛。例如上传文件，下载文件，浏览网页等等。
-
-## TCP/IP  
-it is not a single networking protocol 
-it is a suite of protocols named after the two most important protocols or layers within it -- TCP & IP
-
-* communication =   message+ 
-                    means to transmit 
-
-THe TCP layer handles the msg part 
-IP layer handles the means of transmission part 
-TCP/IP is considered a stateless protocol suite because each client connection is newly made without
-regard to whether a previous connection had been established
-
-* 五层模型
-
------------ user 
-can be think like a burger.
+## TCP/IP 5 layers  
+* user 
+-------------------------------
 1. application layer 
+
+HTTP & HTTPS protocols 
+- HTTP request 
+- HTTPS encapsulation 
+-------------------------------
 2. transport layer
+
+- TCP protocol
+- three way handshake  
+/*   why HTTP request is not placed in here? doesn't the request happens sequencially like this? */
+- four way handshake 
+- UDP protocol
+packet = information in the envolop 
+
+what packet contains: 
+everything in the HTTP request 
+-------------------------------
 3. network layer 
+IP 关心的是从A－> B的具体路径实现
+"I want data flow from point A to point B" 
+
+Topics: 
+- IP protocol
+* private IP address 
+* public IP address 
+* DNS 
+-------------------------------
 4. link layer 
+
+Ethernet frame 
+-------------------------------
 5. physical layer 
------------hardware 
 
+electricity 
+-------------------------------
+hardware 
+
+`
 * 每一层都是完了完成一种功能。为了实现这些功能，就需要大家都遵守共同的规则。
-互联网的每一层，都定义了很多协议。这些协议的总称，就叫做“互联网协议” （Internet Protocol Suite）. 他们是互联网
-的核心。
-5. 实体层 physical layer 
-* 实体层就是把电脑连接起来的物理手段
-* 它主要规定了网络的一些电气特性，作用是负责传送0&1的电信号
-* 电脑要组成网络，第一件事就是要把电脑连起来。可以用光缆，电缆，双绞缆，无线电波等方式。
+互联网的每一层，都定义了很多协议。这些协议的总称，就叫做“互联网协议” （Internet Protocol Suite）. 他们是互联网的核心。
 
-4. 连接层 link layer 
+## Layer 1: Application Layer 
+### HTTP vs HTTPS 协议protocol 
+他们是 aset of conventions that web browsers and web servers use to speak to one another 
 
-1. application layer 
-the topmost layer is the application layer.
-规定了应用程序的数据格式，把数据格式放入UDP或是TCP协议的Data中。比如TCP协议可以为不同程序传递数据
-eg: HTTP -> website，是浏览器和服务器约定的一种数据格式。 
-
-SMTP -> email 
-
-2. transport layer 
-TCP, UDP 
-TCP (transmission control protocol) breaks msgs into small packets of dta
-then reassumbles those packets into the original msg
-IP 
-ensures each package gets to the correct destination  
-3. Internet Layer 
-IP 
-packet knows where it came from and where it's going 
-This is done by means of a unique IP address assigned to each and every active recipient on the network
-4.
- 
-### 
-1. LAN (aka Local Area Network) & WAN (aka Wide Area Network)
-
-2. socket 
-end point of communication 
-to send and receive msg over a network, it will have a socket at both the ends that  is the 
-sender end as well as the receiver end.
-
-inputstream -> reading data 
-outputstream -> writing / sending data 
-
-
-
-## Socket 
-Socket 接口是TCP／IP 网络的API，Socket接口定义了许多函数或是例程，程序眼可以用他们来开发TCP/IP网络上的应用程序。
-要学Internet 上的TCP／IP网络编程，必须理解Socket接口。
-## HTTP vs HTTPS 协议protocol 
 HTTP 报文是包裹在TCP报文中发送的。server 收到TCP报文是会解包提取出HTTP报文。
 但是这个过程是有风险的。因为HTTP 报文是明文，如果中间被截取的话存在一定的信息泄露的风险。
 所以在进入TCP报文之前做一次加密就可以解决这个问题了。HTTPS协议的本质就是HTTP＋SSL(or TLS). 
@@ -155,6 +94,185 @@ HTTPS 过程
 HTTPS 在传输属区之前需要client 和server 进行一个 TLS／SSL握手。握手过程中将确立双方加密传输数据的密码信息。
 TLS／SSL使用非对称加密，对称加密，和hash等。HTTPS 相对与HTTP尽管提供了安全保障，但是会带来一些时间上的损耗，比如说
 握手和加密的过程。决定是否使用HTTPS其实是在安全和性能方面的权衡。 
+
+### HTTP 简介
+HTTP 协议 是 服务器传输Hyper Text 到本地Browser 的传送协议。
+HTTP是基于TCP/IP通信协议来传递数据（HTML文件，img文件等等）.
+client -- HTTP protocol ----> server 架构上
+web server 有 Apache server, IIS server 等。
+HTTP默认端口是80，但我可以自己改。
+
+``` 
+Web Browser <---> HTTP Server <----> CGI Program <-----> DB 
+
+``` 
+
+### HTTP 消息结构
+是一个无状态的req/res protocol.
+HTTP使用统一资源标识符URI 来传递数据和建立连接。
+#### 客户端请求消息
+client 发送一个HTTP请求到服务器的请求消息包括一下格式： request line + header + 空行＋请求数据
+``` 
+<request method> <URL> <protocol-version>  // request line 
+<Header字段名>: <value>  // request header 
+<Header字段名>: <value> // request header
+// 空行
+request data 
+```
+
+### 服务器相应消息
+HTTP response 也由四部分组成： status row, 消息报头，空行，响应正文
+```
+HTTP/1.1 200 OK      // status row 
+
+``` 
+
+
+
+## Layer 2: Transport Layer 
+* UDP 
+* TCP "I want to make sure data get from point A to point B"
+    TCP's purpose in life is to keep track of all the data that flows across the Internet between point A
+    and point B, and if any packets get lost or corrupted or dropped by a firewall, if they disappear somewhere into the Ether. **The purpose of TCP is to tell computer A, "resend the same data to point B".** 
+
+
+## Layer 3: Network Layer 
+### Intro of IP address   
+* IP address 相当于门牌号码，
+通过IP address 才能知道每一个主机的位置。server 也是一个主机，想要访问某一个server, 必须直到server的IP address.
+
+### Comparison between Private and Public IP Addresses 
+* Private IP Address:
+used to communicate within the same network 
+* IP address 分为两大类
+1. IPv4: 
+给每个链接在网络上的主机分配了一个32bit的地址。按照TCP／IP的规定，IP地址用二进制来表示，每个IP地址长32bit,也就是4个bytes.
+为了方便使用，IP地址经常被写成十进制的形式，中间用符号“.” 分隔不同的字节。
+2. IPv6
+现在对IP地址的需求量越来越大，但是网络资源地址有限，所以IP的分配变得越来越紧张。为了扩大地址空间，通过IPv6重新定义地址空间，采用128位地址长度，去解决网络地址资源数量不够的问题
+虽然话是这么说，但其实基本上IPv6是不被使用的。因为router 并不明白IPv6.所以用IPv6常常会有问题。现在基本所有的通向网络的设备都还是用IPv4. 
+
+* Public IP Address: 
+used to communicate outside of the network 
+Public IP address is basically assigned by the ISP (Internet Service Provider)
+It's an address lots of people share 
+search by type in "my ip address " in Chrome 
+
+`
+ ____                                   ____  
+|    |                                 |    | 
+|____|                                 |____|
+
+
+  PC                                    Server 
+California                            New York
+private IP: 10.1.1.100                private IP: 192.168.1.121
+public IP: 70.62.50.42                public IP: 40.20.26.63
+
+
+`
+
+
+| Public IP Address               | Private IP Address    | 
+| -------------                   | ------------- | 
+| Scope is global                 | Scope is local    |  
+| It is used to communicate outside the network| It is used to communicate within the network|  
+| Public IP may differ in uniform or non-uniform manner| Private IP addr of the systems connected in a network differ in a uniform mannaer|
+
+|It is used to get internet service| It works only in LAN |
+|search by google                 |Network Wifi Advance check |
+
+
+### IP Protocols
+* UDP protocol 
+ UDP协议是User Datagram Protocol 
+ 它是无连接通信协议。即在数据传输时，数据的发送端和接收端不建立逻辑连接。
+  简单的说，当PC A  －> PC B 时， 发送端不会确认接收端是否存在，就会发出数据。同样接收端在收到数据时，
+  也不会向发送端反馈是否收到数据。
+  由于UDP协议消耗资源小，通信效率高，所以通常会被用于audio, video 和普通data 的传输.
+  比如视频会议通常采用UDP协议。因为即使丢失一两个数据包，也不会对接受结果产生太大的影响。但是使用UDP协议
+  传送数据时，由于UDP的面向无连接性，不能保证数据的完整性。因此传输重要数据时不建议使用UDP协议。 
+* TCP protocol 
+  Transmission Control Protocol 
+  TCP协议是面向连接的通信协议。在传输数据之前，在发送端和接收端必须要建立起逻辑联系。然后才能传输数据。
+  它提供了两台计算机之间可靠无差错的数据传输。在TCP连接中必须要明确客户端和服务器端。由客户端向服务器端
+  发出连接请求。每次连接的建立都需要经过三次握手
+
+* 三次握手
+   TCP协议中，在发送数据的准备阶段，客户端和服务器之间的三次交互。以保证连接的可靠。
+  第一次握手：客户端向服务端发送连接请求，等待服务器确认
+  第二次握手：服务器端想客户端送回一个响应，通知客户端收到了连接请求
+  第三次握手：客户端再次向服务端发送确认信息，确认连接
+
+  ` 
+   1) client -- req: "request connect" --> server 
+   2) client <--  res :"request received" -- server
+   3) client -- conf"confirmation"  --> server 
+  `
+
+   三次握手完成后，连接就建立了。客户端和服务端就可以开始进行数据传输了。对于这种面向连接的特性，TCP协议可以
+   保证传输数据的安全。所以应用十分广泛。例如上传文件，下载文件，浏览网页等等。
+
+### 涉及的其他技术
+* 127.0.0.1 IP Address 和 myIPAddress 区别
+
+ 127.0.0.1 is a special-purpose IPv4 address called localhost 
+ All computers use this address as their own 
+ Doesn't let them communicate with other devices as a real IP address does 
+ only used by the computer u r on
+ 
+ when is used?
+ web server running on a computer can point to 127.0.0.1 so the page can be run locally and tested before it's deployed 
+
+ application server -- message & IP address --> client 
+ TCP/IP recognizes (127.0.0.1) as a special IP address 
+
+ Messages sent to loopback IP addresses like 127.0.0.1 do not reach outside of the local area network 
+
+ 127.0.0.1 accessed through a loopback interface but not through the network adapter 
+ this works even if there is no network chips in the system 
+
+ system IP address 
+  the ip you get from the router is a different story: it's the address that other computer on the network to find you 
+  you can use this ip on the same machine too, but it works differently as before: it's going out to 
+  the router and in again 
+
+
+
+ * private IP address 
+ private IP address: 192.168.1.115
+ can communicate with a router and other networked devices 
+localhost: 127.0.0.1 
+attached to it to mean "this computer"
+
+### TCP 通信程序
+### TCP 通信原理
+TCP通信协议是一种可靠的网络协议。它在通信的两端各建立一个Socket 对象，从而在通信的两端形成网络虚拟链路，
+一旦建立了虚拟的网络链路，两端的程序就可以通过虚拟链路进行通信。 
+Java 对基础TCP协议的网络提供了良好的封装，使用Socket 对象来表示两端的通信端口，并通过Socket 产生IO流来进行网络通信
+
+A TCP connection consists of 4 parts:
+1. Client IP 
+2. Client Port 
+3. Server IP 
+4. Server Port 
+
+
+
+
+
+
+## Layer 4: Link Layer 
+## Layer 5: physical layer 
+* 实体层就是把电脑连接起来的物理手段
+* 它主要规定了网络的一些电气特性，作用是负责传送0&1的电信号
+* 电脑要组成网络，第一件事就是要把电脑连起来。可以用光缆，电缆，双绞缆，无线电波等方式。
+
+
+## Socket 
+Socket 接口是TCP／IP 网络的API，Socket接口定义了许多函数或是例程，程序眼可以用他们来开发TCP/IP网络上的应用程序。
+要学Internet 上的TCP／IP网络编程，必须理解Socket接口。
+
 
 
 ## 什么是URL
@@ -203,38 +321,7 @@ label 都是跟着TLD的。一个标签可以是任何东西，从一个字母�
 5. 最后在相应的com 域名的顶级服务器中找到对应的IP address，传回我的电脑，我的电脑再传回给我的Browser
 
 
-## HTTP 简介
-HTTP 协议 是 服务器传输Hyper Text 到本地Browser 的传送协议。
-HTTP是基于TCP/IP通信协议来传递数据（HTML文件，img文件等等）.
-client -- HTTP protocol ----> server 架构上
-web server 有 Apache server, IIS server 等。
-HTTP默认端口是80，但我可以自己改。
 
-``` 
-Web Browser <---> HTTP Server <----> CGI Program <-----> DB 
-
-``` 
-
-## HTTP 消息结构
-是一个无状态的req/res protocol.
-HTTP使用统一资源标识符URI 来传递数据和建立连接。
-### 客户端请求消息
-client 发送一个HTTP请求到服务器的请求消息包括一下格式： request line + header + 空行＋请求数据
-``` 
-<request method> <URL> <protocol-version>  // request line 
-<Header字段名>: <value>  // request header 
-<Header字段名>: <value> // request header
-// 空行
-request data 
-```
-
-
-### 服务器相应消息
-HTTP response 也由四部分组成： status row, 消息报头，空行，响应正文
-```
-HTTP/1.1 200 OK      // status row 
-
-``` 
 
 ## 讲讲 get 和 post 的区别 
 这里说的GET 和 POST 特指浏览器中的HTTP request 而不是 Ajax 的HTTP request. 即是HTTP protocol 中的GET／POST.
@@ -313,8 +400,12 @@ Browser
                                 ＝> Root Name Server 
                                     5. 帮助找到相应的顶级域名服务器
                                         => 顶级域名服务器
+                                        knows everything end with the top-level domain 
                                             6. 找到网站域名服务器
                                                 ＝> google.com 域名服务器
+
+                                                                root DNS 
+                                                                (final .)
                                                     7. find IP 
         OS<＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ IP      
         8. return IP 
@@ -367,6 +458,72 @@ PS:
 
 
 
+
+## TCP/IP  
+it is not a single networking protocol 
+it is a suite of protocols named after the two most important protocols or layers within it -- TCP & IP
+`
+HTTP 
+assum all bottom layers work fine
+---------------------------------------------------------
+
+ 
+---------------------------------------------------------
+Ethernet   
+
+`
+* communication =   message+ 
+                    means to transmit 
+
+THe TCP layer handles the msg part 
+IP layer handles the means of transmission part 
+TCP/IP is considered a stateless protocol suite because each client connection is newly made without
+regard to whether a previous connection had been established
+
+
+
+
+
+1. application layer 
+the topmost layer is the application layer.
+规定了应用程序的数据格式，把数据格式放入UDP或是TCP协议的Data中。比如TCP协议可以为不同程序传递数据
+eg: HTTP -> website，是浏览器和服务器约定的一种数据格式。 
+
+SMTP -> email 
+
+2. transport layer 
+TCP, UDP 
+TCP (transmission control protocol) breaks msgs into small packets of dta
+then reassumbles those packets into the original msg
+IP 
+ensures each package gets to the correct destination  
+3. Internet Layer 
+IP 
+packet knows where it came from and where it's going 
+This is done by means of a unique IP address assigned to each and every active recipient on the network
+4.
+ 
+### 
+1. LAN (aka Local Area Network) & WAN (aka Wide Area Network)
+
+2. socket 
+end point of communication 
+to send and receive msg over a network, it will have a socket at both the ends that  is the 
+sender end as well as the receiver end.
+
+inputstream -> reading data 
+outputstream -> writing / sending data 
+
+
+ 
+## SSH 
+It is a method for secure remote login from one computer to another 
+
+### Typical uses of the SSH protocol
+The protocol is used in corporate networks for: 
+* providing secure access for users and automated processes 
+
+
+
 ## 强制缓存 vs 协商缓存
 ### intro to caching 
-存，

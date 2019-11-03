@@ -1,5 +1,77 @@
 # JavaScript 的练习题看这里
 
+## 异步编程方案
+JavaScript 语言的执行环境是“单线程” （single thread）
+所谓"single thread" 就是一个只能完成一个任务。如有多个任务，必须排队。
+这种模式的好处是实现起来比较简单。执行环境相对单纯。坏处是只要有一个任务耗时很长，后面的任务都必须排队等着。
+常见的问题就是浏览器无响应（假死），往往就是某一段代码长时间运行，导致页面卡在这个地方，其他任务无法执行。
+
+为了解决这个问题，JS 语言讲任务的执行分成了两种： 同步 （synchronous） 和 异步 (Asynchronous)
+所有的长耗时的任务都应该使用异步执行。
+在服务器端，“异步模式”是唯一的模式。因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧的下降，
+很快就会失去响应。
+异步编程的核心是现在运行的部分和未来运行的部分之间的关系
+`
+  now 
+    |    
+    |   This gap is the core of asynchronism  
+    |
+  future
+
+`
+
+### 分块的程序
+### 事件循环
+### 并行线程
+### 并发
+#### 非交互
+#### 交互 
+#### 协作
+### 任务
+### 语句顺序 
+
+
+
+### 方案
+1. callback function 
+2. event listening 
+3. public / subscribe 
+4. Promise 对象
+### 回调函数
+
+### Promise 
+promise 相当于一个状态机
+promise 的三种状态
+* pending 
+* fulfilled, 当调用resolve function 
+* rejected, 当调用 rejected function 
+promise状态只能由pending -> fulfilled / rejected 一旦修改就不能再变
+
+`
+按照顺序写出下列console的值
+const pro = new Promise((resolve, reject)=>{
+    const innerpro = new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            resolve(1);
+        }, 0);
+        console.log(2);
+        resolve(3);
+    });
+    innerpro.then(res=>console.log(res));
+    resolve(4);
+    console.log("pro");
+})
+pro.then(res=>console.log(res));
+console.log("end"); 
+
+
+`
+
+## Axios 
+Axios 是一个基于Promise 的HTTP库，可以用于Browser和 node.js里面
+
+### 
+
 ## 跨域问题 jsonp
 ### jsonp 的概念
 jsonp 是解决跨域问题的办法之一。原理在于虽然我们由于同源策略不能够从另外的domain上请求file，可是我们可以请求script.  

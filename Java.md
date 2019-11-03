@@ -24,5 +24,11 @@
 中的application,是应用程序的标识.
 3. protocol. 通信的规则
 
-
+## TCP 通信原理
+Java为客户端提供了Socket class, 为server 提供了ServerSocket class.
+TPC 发送数据：
+Steps: 
+1. create client side Socket object 
+2. get Outflow, write data 
+3. release resource 
 
