@@ -84,6 +84,7 @@ Event Loop 是一个机制 mechanism. 它使得在单线程语言JS能够同时�
 3. Queue 就是当API处理结束，给我们返回了data后，我们就将callback function(data) 放入Queue 之中等待处理. 
 
 #### Process 
+
 ``` 
 all sync code 被处理
     /|\
@@ -113,7 +114,7 @@ async_callback_fun1(data)   async_callback_fun2(data)
 
 
 #### event loop implementation 
---- 
+``` javascript
 var eventloop =[];
 var event;
 
@@ -123,14 +124,14 @@ while(true){
         event();
     }
 }
---- 
+``` 
 这就是一个被极端简化的 pseudo code
 * 通常event loop 没有一个抢占时的方法支持它直接排到队首
 * 现在我们可以对event loop 下一个更精准的定义
 * 它是一个事件处理机制
 * 帮助single thread language js 实现代码的不规则执行顺序
 * 具体来说，实现的方式是，
----
+```
 Stack (
 main()
 )
@@ -146,7 +147,7 @@ Queque
 (
     asyncFunc1(), asyncFunc2(data)         
 )   
----
+```
 那么我们初级阶段的event loop 就结束啦！更加高阶的event loop 讲解
 会在Promise 学完之后我们接着介绍。挥手👋 
 
