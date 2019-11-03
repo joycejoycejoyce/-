@@ -1,5 +1,12 @@
 # JavaScript 的练习题看这里
 
+Questions:
+疑问统统写在最上面这里哈哈哈
+1. 许多程序中，IO是非常低速的阻塞部分。所以从页面／UI的角度来说，浏览器在后台异步处理控制台IO能够提升性能。用户神志意识不到其发生？？？ 我都不明白这句话是个啥意思。。。 能不能把英文写出来。。。 
+2. 
+
+请按照顺序食用
+
 ## 异步编程方案
 JavaScript 语言的执行环境是“单线程” （single thread）
 所谓"single thread" 就是一个只能完成一个任务。如有多个任务，必须排队。
@@ -21,8 +28,132 @@ JavaScript 语言的执行环境是“单线程” （single thread）
 `
 
 ### 分块的程序
-### 事件循环
+其实JS file 是被分成block 为单位来execute的。最common 的block is function.
+* example 
+`
+function now(){return 21;}
+function future(){
+    answer = answer * 2;
+    console.log("future: "+answer);
+}
+var answer = now();
+setTimeout(later, 1000);
+`
+
+现在执行的部分是
+｀
+function now(){return 21;}
+function future(){
+    ...
+}
+var answer = now();
+setTimeout(later, 1000);
+
+｀
+
+未来执行的部分是
+`
+answer = answer * 2;
+console.log("future: "+answer);
+`
+
+### 事件循环（sync & async）
+#### 适合看的资料
+[JS-EventLoop-Explaination](https://www.youtube.com/watch?v=8aGhZQkoFbQ);
+[EventLoop-Simulator](http://latentflip.com/loupe/?code=JC5vbignYnV0dG9uJywgJ2NsaWNrJywgZnVuY3Rpb24gb25DbGljaygpIHsKICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gdGltZXIoKSB7CiAgICAgICAgY29uc29sZS5sb2coJ1lvdSBjbGlja2VkIHRoZSBidXR0b24hJyk7ICAgIAogICAgfSwgMjAwMCk7Cn0pOwoKY29uc29sZS5sb2coIkhpISIpOwoKc2V0VGltZW91dChmdW5jdGlvbiB0aW1lb3V0KCkgewogICAgY29uc29sZS5sb2coIkNsaWNrIHRoZSBidXR0b24hIik7Cn0sIDUwMDApOwoKY29uc29sZS5sb2coIldlbGNvbWUgdG8gbG91cGUuIik7!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D);
+3. [Macro-vs-Micro](https://lynnelv.github.io/js-event-loop-browser);
+
+#### 简单的介绍
+Event Loop 是一个机制 mechanism. 它使得在单线程语言JS能够同时处理多个代码块。
+理解Event Loop 之前我们先说说为什么JS不可以只使用sync执行程序。
+设想一下你作为一个用户，在你下滑网页的时候，trigger了一个onScrollDown Event. 那么在这个事件处理完之前，你的网页就卡住了。你无法再做任何的事情。这是不是很可怕。
+那么我们再想想，我们现在的网页都是什么样的呢？我们在下滑之后，依然可以点击“Submit”btn， 或是可以在search bar 输入我们想查找的东西. 作为程序员，你有没有想过这个神奇的事情背后的秘密呢？没错，这就是async. 它的实现，遵循了event loop 机制。
+
+
+我们知道了为什么要使用async, 以及event loop 是做什么的之后，我们现在就可以了解一下，在浏览器中, 我们的js code 是如何被处理的.
+
+#### 相关的概念们
+1. sync 
+2. async 
+三个部分与两种代码的关系
+1. stack:是由v8 JS engine 来处理的. 
+
+2. web APIs 里都是第三方的API, 它们可以是window, 可以是JSONPlaceholder...
+3. Queue 就是当API处理结束，给我们返回了data后，我们就将callback function(data) 放入Queue 之中等待处理. 
+
+#### Process 
+`
+all sync code 被处理
+    /|\
+async 被检测到 -----> 移到这里向第三方作处理 
+     |
+all sync 按照顺序直接进入       
+
+stack             web APIs 
+                       |
+                       |
+                       |
+                      \ /
+
+    Event 
+    Loop (if stack empty, move queue event to stack)
+
+    Queue
+async_callback_fun1(data)   async_callback_fun2(data)        
+
+`
+我们可以在脑子里这样想
+1. 找出sync statement 
+2. 处理sync statement, 写出output 
+3. 找到async,
+4. 处理async statment, 写出output
+
+
+
+#### event loop implementation 
+`
+var eventloop =[];
+var event;
+
+while(true){
+    if (eventloop.length >0){
+        event = eventloop.shift();
+        event();
+    }
+}
+`
+这就是一个被极端简化的 pseudo code
+* 通常event loop 没有一个抢占时的方法支持它直接排到队首
+* 现在我们可以对event loop 下一个更精准的定义
+* 它是一个事件处理机制
+* 帮助single thread language js 实现代码的不规则执行顺序
+* 具体来说，实现的方式是，
+｀
+Stack (
+main()
+)
+
+
+Event Loop 
+(
+  stack empty?
+  queue empty?
+  move queue event to stack  
+)
+
+Queque
+(
+    asyncFunc1(), asyncFunc2(data)         
+)   
+｀
+
+那么我们初级阶段的event loop 就结束啦！更加高阶的event loop 讲解
+会在Promise 学完之后我们接着介绍。挥手👋 
+
+
+
 ### 并行线程
+concurrency 和 async 不是一回事。尽管他们常常被混为一谈。
 ### 并发
 #### 非交互
 #### 交互 
@@ -37,9 +168,18 @@ JavaScript 语言的执行环境是“单线程” （single thread）
 2. event listening 
 3. public / subscribe 
 4. Promise 对象
-### 回调函数
 
-### Promise 
+
+## Event Loop 
+
+
+## 回调 
+
+
+
+
+
+## Promise 
 promise 相当于一个状态机
 promise 的三种状态
 * pending 
